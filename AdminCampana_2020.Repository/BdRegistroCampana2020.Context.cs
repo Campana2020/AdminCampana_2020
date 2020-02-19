@@ -32,5 +32,9 @@ namespace AdminCampana_2020.Repository
         public virtual DbSet<Estrategia> Estrategia { get; set; }
         public virtual DbSet<Seccion> Seccion { get; set; }
         public virtual DbSet<Zona> Zona { get; set; }
+        public virtual DbSet<Afiliado> Afiliado { get; set; }
+        public virtual DbSet<Auditoria> Auditoria { get; set; }
+
+
     }
 }

@@ -118,5 +118,31 @@ namespace AdminCampana_2020.Controllers
            return Json(IpersonaBusiness.GetAllPersonas(),JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Editar(int _id)
+        {
+            PersonaDomainModel personaDM= IpersonaBusiness.GetPersonaById(_id);
+            if (personaDM != null)
+            {
+                PersonaVM personaVM = new PersonaVM();
+                AutoMapper.Mapper.Map(personaDM, personaVM);
+                TelefonoVM telefonoVM = new TelefonoVM();
+                AutoMapper.Mapper.Map(personaDM.TelefonoDomainModel,telefonoVM);
+                personaVM.TelefonoVM = telefonoVM;
+                return View("Editar", personaVM);
+            }
+            return RedirectToAction("InternalServerError","Error");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Editar([Bind(Include ="StrNombre,StrApellidoPaterno,StrApellidoMaterno,TelefonoVM")]PersonaVM personaVM)
+        {
+            return View();
+        }
+
+
+
     }
 }
